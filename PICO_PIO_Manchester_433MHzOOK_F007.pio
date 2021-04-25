@@ -1,0 +1,22 @@
+
+.program manchWithDelay
+; 1 data bit @ 1024 kHz => 976.56 us,  
+; with 125 MHz clock and dividor = 2543
+; giving 48 cycles/bit => 1 cycle time = 20.34 us of resolution
+; short wait=12 => 244.08 us, long wait=24 => 488.16 us
+; giving long test at 36 => 732.24 us
+start_of_1:
+    wait 0 pin 0 [9]     ; 10 short wait
+    jmp  pin start_of_1  ; 11
+    in   x, 1 [23]       ; 35 long wait
+    jmp pin start_of_1   ; 36 => 48-36=12
+
+.wrap_target
+start_of_0:
+    wait 1 pin 0 [9]     ; 10 short wait
+    jmp pin emit_0       ; 11
+    jmp start_of_0
+emit_0:    
+    in y, 1 [23]         ; 35 long wait
+    jmp pin start_of_1   ; 36 => 48-36=12
+.wrap
