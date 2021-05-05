@@ -217,7 +217,7 @@ uint decode_msg( void ) {
     bool isNeg   = tmpDegC < 0;
     uint absDegC = isNeg ? -tmpDegC : tmpDegC;
     for (uint i = 0; i < MAX_MSGBYTS; i++) {
-        buff2AsciiHex( &msgcods[msgIdx,i*2], msgByts[msgIdx][i] );
+        buff2AsciiHex( &msgcods[i*2], msgByts[msgIdx][i] );
     }
     msgcods[OFFSET_MSGFRMT+0] = chanIdx > MAX_KNWNCHANIDX ? '?' : ' ';
     msgcods[OFFSET_MSGFRMT+1] = ' ';
