@@ -1,16 +1,23 @@
 # PICO_PIO_Manchester_433MHzOOK_F007
 Using PICO PIO, RX decode of 433 MHz OOK Manchester encoded messages from remote F007 temperature sensors.
 
+#### **The work on the F007 has now moved to another repository -** https://github.com/peter-g-wilson/PICO_PIO
+The main changes to the F007 code in the new repository are
+* use a sliding window with bit mask to try to match the start of a message header bits - now hard coded to include F007T's 0x46 header
+* (not really a F007 change) added OOK PWM for WH1080 weather station decoding 
+* use slighly more generic message and bit queues suitable for both for F007 and WH1080
+<br>
 Example sensors are Oregon Scientific WMR86, Ambient Weather F007 and Froggit FT007.
 No doubt all are manufactured/cloned in China and just re-badged.
 Be aware that the encoding method may change between different versions of sensors.
 
-For the F007, the RF receiver can be any one that does 433 MHz OOK e.g. RF Solutions AM-RX9-433P or RadioControlli RCRX-434-L
+For the F007, the RF receiver can be any one that does 433 MHz OOK e.g. RF Solutions AM-RX9-433P or RadioControlli RCRX-434-L.
 The message protocol is a bit limiting for the sofisticated receivers like HopeRF RFM65.
-There are also decodes for SDR e.g.ambient_weather.c at https://github.com/merbanan/rtl_433
+There are also decodes for SDR e.g. ambient_weather.c at https://github.com/merbanan/rtl_433
 
 Its been done on Arduino’s
 Rob Ward (and the people he credits), https://github.com/robwlakes/ArduinoWeatherOS decoding by delay algorithm
+<br>
 Ron Lewis, https://eclecticmusingsofachaoticmind.wordpress.com/2015/01/21/home-automation-temperature-sensors/ for the checksum algorithm?
 
 Why do it?
