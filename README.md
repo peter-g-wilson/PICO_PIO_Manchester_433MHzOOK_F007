@@ -1,11 +1,21 @@
 # PICO_PIO_Manchester_433MHzOOK_F007
 Using PICO PIO, RX decode of 433 MHz OOK Manchester encoded messages from remote F007 temperature sensors.
 
-#### **The work on the F007 has now moved to another repository -** https://github.com/peter-g-wilson/PICO_PIO
-The main changes to the F007 code in the new repository are
+#### **The work on the F007 has now moved to another repository -** 
+first to https://github.com/peter-g-wilson/PICO_PIO <br>
+and now to  https://github.com/peter-g-wilson/yaesa
+
+The main changes to the F007 code in the **PICO_PIO** repository are
 * use a sliding window with bit mask to try to match the start of a message header bits - now hard coded to include F007T's 0x46 header
 * (not really a F007 change) added OOK PWM for WH1080 weather station decoding 
 * use slighly more generic message and bit queues suitable for both for F007 and WH1080
+<br>
+
+The changes going to the **yaesa** repository are
+* even more commonality for message and bit queues and also the bit-stream decoding
+* added DS18B20 and one-wire
+* added BME280
+
 <br>
 Example sensors are Oregon Scientific WMR86, Ambient Weather F007 and Froggit FT007.
 No doubt all are manufactured/cloned in China and just re-badged.
